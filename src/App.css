@@ -1,0 +1,142 @@
+:root {
+  --color-white: #fff;
+  --color-text: #bdbdbd;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-family: nunito, sans-serif;
+}
+.container {
+  min-height: 400px;
+  height: 400px;
+  width: 400px;
+  min-width: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: url("./img/background.jpg"), repeat-x;
+  background-size: cover;
+  padding: 1em;
+}
+.container::-webkit-scrollbar {
+  background-color: #333333;
+}
+.container::-webkit-scrollbar-thumb {
+  background-color: black;
+}
+.content {
+  padding: 1em;
+  padding-right: 0em;
+  display: flex;
+  flex-direction: column;
+}
+.content ul {
+  padding: 0;
+  margin: 0;
+}
+.header {
+  margin-bottom: 20px;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+.my-day {
+  font-size: 30px;
+  color: var(--color-white);
+}
+#date {
+  color: var(--color-white);
+  font-size: 16px;
+  margin-top: 5px;
+}
+.item {
+  margin-bottom: 3px;
+  height: 50px;
+  background: #252525;
+  position: relative;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.item:hover {
+  background: #333333;
+  box-shadow: rgba(0, 0, 0, 1);
+}
+.item i.co {
+  font-size: 25px;
+  padding-left: 1%;
+  color: var(--color-text);
+  position: absolute;
+  top: 14px;
+  left: 10px;
+}
+.item i.co:hover {
+  cursor: pointer;
+}
+.fa-check-circle {
+  color: #6eb200;
+}
+.item p.text {
+  pointer-events: none;
+  position: absolute;
+  font-size: 20px;
+  top: -5px;
+  left: 70px;
+  color: var(--color-text);
+}
+.lineThrough {
+  text-decoration: line-through;
+  color: #ffffff;
+}
+.item i.de {
+  position: absolute;
+  font-size: 23px;
+  right: 23px;
+  top: 14px;
+  color: var(--color-text);
+}
+.item i.de:hover {
+  color: #ff2424;
+  cursor: pointer;
+}
+.input-list-item {
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
+  display: flex;
+  position: relative;
+}
+.input-list-item i.co {
+  font-size: 25px;
+  margin-left: 25px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-white);
+}
+input {
+  background-color: transparent;
+  height: 50px;
+  width: 100%;
+  padding: 10px 28px;
+  border: none;
+  color: var(--color-white);
+  font-size: 20px;
+  outline: none;
+}
+.input-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.input-list-item:focus {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+input::placeholder {
+  /* Firefox 19+ */
+  color: var(--color-white);
+}
