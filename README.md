@@ -1,6 +1,6 @@
-# DSMEGlobal
+# Todo list
 
-Extensions are software programs, built on web technologies ( Such as React) that enable users to customize the Chrome browsing experience.
+This is a chrome extension to help making my todo list easy
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/main/LICENSEs)
 
