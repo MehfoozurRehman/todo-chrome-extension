@@ -1,6 +1,7 @@
-import React from "react";
 import "./App.css";
 import "./font-awesome.css";
+
+import React from "react";
 
 window.onload = function () {
   const dateElement = document.getElementById("date");
