@@ -19,7 +19,7 @@ body {
   min-width: 400px;
   overflow-y: hidden;
   overflow-x: hidden;
-  background: url("./img/background.jpg"), repeat-x;
+  background: url("./img/background.jpg"), no-repeat;
   background-size: cover;
   padding: 1em;
   padding-right: 0em;
