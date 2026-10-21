@@ -1,50 +1,40 @@
 # Todo Chrome Extension
 
-A lightweight browser popup Chrome extension for quick task management, checklists, and daily todos built with React 18 and Vite.
+A browser-toolbar popup for a daily checklist, built with React 18 and Vite and saved in `localStorage`.
 
-## Overview
+**Status:** Stub. The code is two real source files (`src/App.jsx`, `src/main.jsx`), and the main action is broken: pressing Enter in the input throws, so new tasks cannot be added.
 
-`todo-chrome-extension` is a quick-access browser extension that enables users to manage daily checklists directly from Chrome's toolbar popup, keeping tasks saved locally without leaving the current tab.
+## The problem
 
-## Tech Stack
+Keeping a short daily to-do list without leaving the current tab. The popup shows today's date and a list of tasks that persists between browser sessions.
 
-- **Extension Framework**: React 18 & [Vite](https://vitejs.dev/) (v4)
-- **Manifest**: Chrome Extension Manifest V3
-- **Language**: JavaScript / TypeScript
+## What it does
 
-## Prerequisites
+- Shows today's date in the popup header.
+- Toggles a task between done and not done, with a line-through style on completed items.
+- Hides a task when its trash icon is clicked. The record stays in storage.
+- Saves the list to `localStorage` under the key `TODO` on every change.
+- Intended: add a task when Enter is pressed in the "Add Task" input. This path does not work yet (see below).
 
-- Node.js (v16 or v18 recommended)
-- Google Chrome or any Chromium-based browser
-- Package manager (`pnpm` or `npm`)
+## How it's built
 
-## Getting Started
+- React 18 with Vite 4 and `@vitejs/plugin-react`. The build output is a `dist` folder that Chrome loads as an unpacked extension.
+- The extension manifest is `public/manifest.json`. It declares `manifest_version` 2 with a `browser_action` whose popup is `index.html`. Vite copies `public/` into `dist`.
+- State is a single array of `{ id, name, done, trash }` objects, held in React state and mirrored to `localStorage` in a `useEffect`. Clicks are handled by one listener on the list, which reads a `job` attribute on each icon.
+- `vite.config.js` runs `vite-plugin-imagemin` to compress images at build time.
 
-1. **Install dependencies**:
-   ```bash
-   pnpm install
-   # or
-   npm install
-   ```
+## Running it locally
 
-2. **Build the Extension**:
-   ```bash
-   pnpm build
-   # or
-   npm run build
-   ```
+```bash
+pnpm install   # or: npm install
+pnpm build     # writes dist/
+```
 
-3. **Load in Chrome**:
-   - Open Chrome and navigate to `chrome://extensions/`.
-   - Enable **Developer mode** in the top right corner.
-   - Click **Load unpacked** and select the generated `dist` folder.
+Then in Chrome, open `chrome://extensions/`, enable Developer mode, click "Load unpacked" and select `dist`. `pnpm dev` runs the popup in a Vite dev server, and `pnpm preview` serves the build.
 
-## Available Scripts
+## What's left
 
-- `pnpm dev` - Starts the Vite dev server for popup UI development.
-- `pnpm build` - Builds production-ready Chrome extension bundles.
-- `pnpm preview` - Previews the build output locally.
-
-## Author
-
-Created by [Mehfooz-ur-Rehman](https://github.com/MehfoozurRehman).
+- Enter-to-add is broken. `handleInputKeyUp` reads an undefined variable `input` (it should use `inputValue`) and reads `window.event`. The fix is a one-line change to use the `inputValue` state.
+- Deleted tasks are only hidden, so `localStorage` keeps growing. Removing them from the array would fix this.
+- The manifest is version 2. Chrome Web Store no longer accepts new MV2 extensions, so this needs a move to MV3 before it can be published.
+- No tests.
