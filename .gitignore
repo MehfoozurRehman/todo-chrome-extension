@@ -21,4 +21,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-config.bat
+
+.env*
+!.env.example
